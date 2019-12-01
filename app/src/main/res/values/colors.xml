@@ -6,4 +6,5 @@
         <color name="colorPrimaryLight">#2B80E5</color>
         <color name="TipColor">#7A7A7A</color>
         <color name="ErrorColor">#00B0F8</color>
+        <color name="whiteColor">#ffffff</color>
 </resources>

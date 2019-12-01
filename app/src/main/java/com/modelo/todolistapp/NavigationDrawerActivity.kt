@@ -3,11 +3,14 @@ package com.modelo.todolistapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
+import com.modelo.todolistapp.UI.AllTasksFragment
+import com.modelo.todolistapp.UI.ImportantTasksFragment
+import com.modelo.todolistapp.UI.PendingTasksFragment
+import com.modelo.todolistapp.UI.PlannedTasksFragment
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_nd.*
 

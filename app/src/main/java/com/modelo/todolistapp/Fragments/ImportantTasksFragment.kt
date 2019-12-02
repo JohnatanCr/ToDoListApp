@@ -1,4 +1,4 @@
-package com.modelo.todolistapp.UI
+package com.modelo.todolistapp.Fragments
 
 
 import android.os.Bundle
@@ -11,14 +11,14 @@ import com.modelo.todolistapp.R
 /**
  * A simple [Fragment] subclass.
  */
-class AllTasksFragment : Fragment() {
+class ImportantTasksFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_tasks, container, false)
+        return inflater.inflate(R.layout.fragment_important_tasks, container, false)
     }
 
 

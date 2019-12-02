@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F2F7FC"
-    tools:context=".SignUpActivity">
+    tools:context=".View.SignUpActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -34,8 +34,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="28dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +110,6 @@
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="10dp"
             android:hint="Confirmar Contraseña"
-            android:textColorHint="#7A7A7A"
             app:errorEnabled="true"
             app:passwordToggleEnabled="true">
 
@@ -135,11 +133,21 @@
             android:text="Crear Cuenta"
             android:textAllCaps="false"
             android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="2dp"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="¿Ya tienes Cuenta?"
@@ -151,7 +159,7 @@
             style="?borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="1dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:scrollbarThumbHorizontal="@android:color/transparent"
@@ -161,6 +169,5 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

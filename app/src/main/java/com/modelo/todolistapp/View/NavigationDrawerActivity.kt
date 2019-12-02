@@ -1,4 +1,4 @@
-package com.modelo.todolistapp
+package com.modelo.todolistapp.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,10 +7,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
-import com.modelo.todolistapp.UI.AllTasksFragment
-import com.modelo.todolistapp.UI.ImportantTasksFragment
-import com.modelo.todolistapp.UI.PendingTasksFragment
-import com.modelo.todolistapp.UI.PlannedTasksFragment
+import com.modelo.todolistapp.Fragments.AllTasksFragment
+import com.modelo.todolistapp.Fragments.ImportantTasksFragment
+import com.modelo.todolistapp.Fragments.PendingTasksFragment
+import com.modelo.todolistapp.Fragments.PlannedTasksFragment
+import com.modelo.todolistapp.R
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_nd.*
 

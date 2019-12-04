@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:322074139825:android:c63f17037fa67276cf9690",
+        "mobilesdk_app_id": "1:322074139825:android:efe3b698977830d8cf9690",
         "android_client_info": {
           "package_name": "com.modelo.todolistapp"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "322074139825-hgds5k33sdilrhc5mamqd5h8sfrjrml0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.modelo.todolistapp",
+            "certificate_hash": "7e76246e3b3248b611ae91a5b04f46c1e2d82eef"
+          }
+        },
         {
           "client_id": "322074139825-0ku0jhs6ifrfijaf1qt0h2vvl76suut2.apps.googleusercontent.com",
           "client_type": 1,

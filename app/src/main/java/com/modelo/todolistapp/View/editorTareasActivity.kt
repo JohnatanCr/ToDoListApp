@@ -1,6 +1,7 @@
 package com.modelo.todolistapp.View
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
@@ -121,6 +122,9 @@ class editorTareasActivity : AppCompatActivity() {
                 tvName.setText("")
                 tvDesc.setText("")
                 tvFechaVencimiento.setText("")
+
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
             }
         }
 
@@ -161,10 +165,7 @@ class editorTareasActivity : AppCompatActivity() {
                 tareas.add(tarea!!)
                 rv.adapter?.notifyDataSetChanged()
             }
-        }
+        })
 
 
-
-
-    }
 }

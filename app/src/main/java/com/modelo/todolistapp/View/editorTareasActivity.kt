@@ -34,7 +34,7 @@ data class Tarea(var nombretarea : String = "", var descripcion : String = "", v
 
 }
 
-
+/*
 class DemoAdapter(private var tareas : ArrayList<Tarea>) : RecyclerView.Adapter<DemoAdapter.DemoViewHolder>() {
     override fun getItemCount(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -65,16 +65,18 @@ class DemoAdapter(private var tareas : ArrayList<Tarea>) : RecyclerView.Adapter<
     }
 }
 
+ */
+
 class editorTareasActivity : AppCompatActivity() {
 
 
-    private lateinit var tvName : TextView
-    private lateinit var tvDesc : TextView
-    private lateinit var difBaja : RadioButton
-    private lateinit var difMedia : RadioButton
-    private lateinit var difAlta : RadioButton
-    private lateinit var tvFechaVencimiento : TextView
-    private lateinit var btnAgregar : Button
+    private lateinit var tvName: TextView
+    private lateinit var tvDesc: TextView
+    private lateinit var difBaja: RadioButton
+    private lateinit var difMedia: RadioButton
+    private lateinit var difAlta: RadioButton
+    private lateinit var tvFechaVencimiento: TextView
+    private lateinit var btnAgregar: Button
 
     private lateinit var rv: RecyclerView
 
@@ -98,14 +100,11 @@ class editorTareasActivity : AppCompatActivity() {
         btnAgregar.setOnClickListener {
             val database = FirebaseDatabase.getInstance()
             val tareanombreRef = database.getReference("app").child("users")
-            if (tvName.text.toString()== null)
-            {
-                Toast.makeText(this,"No has agregado la tarea!", Toast.LENGTH_SHORT)
-            }
-            else
-            {
+            if (tvName.text.toString() == null) {
+                Toast.makeText(this, "No has agregado la tarea!", Toast.LENGTH_SHORT)
+            } else {
 
-                val tarea =Tarea(
+                val tarea = Tarea(
                     tvName.text.toString().trim(),
                     tvDesc.text.toString().trim(),
                     tvFechaVencimiento.text.toString().trim()
@@ -113,8 +112,7 @@ class editorTareasActivity : AppCompatActivity() {
                 tareanombreRef.push().setValue(tarea)
 
                 //Desactiva botones
-                if(difBaja.isChecked || difMedia.isChecked || difAlta.isChecked)
-                {
+                if (difBaja.isChecked || difMedia.isChecked || difAlta.isChecked) {
                     difBaja.isChecked = false
                     difMedia.isChecked = false
                     difAlta.isChecked = false
@@ -123,7 +121,7 @@ class editorTareasActivity : AppCompatActivity() {
                 tvDesc.setText("")
                 tvFechaVencimiento.setText("")
 
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -149,11 +147,11 @@ class editorTareasActivity : AppCompatActivity() {
 
                 //var nombretarea : String = "", var descripcion : String = "", var importancia : String = "", var fechavenc : String = "", var nameexterno : String = ""
 
-                val TareaActual : Tarea = tareas.get(tareas.indexOf(tarea))
-                TareaActual.nombretarea=tarea!!.nombretarea
-                TareaActual.descripcion=tarea!!.descripcion
-                TareaActual.fechavenc=tarea!!.fechavenc
-                TareaActual.nameexterno=tarea!!.nameexterno
+                val TareaActual: Tarea = tareas.get(tareas.indexOf(tarea))
+                TareaActual.nombretarea = tarea!!.nombretarea
+                TareaActual.descripcion = tarea!!.descripcion
+                TareaActual.fechavenc = tarea!!.fechavenc
+                TareaActual.nameexterno = tarea!!.nameexterno
 
                 rv.adapter?.notifyDataSetChanged()
             }
@@ -168,4 +166,5 @@ class editorTareasActivity : AppCompatActivity() {
         })
 
 
+    }
 }

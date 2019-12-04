@@ -1,26 +1,16 @@
 package com.modelo.todolistapp.View
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
-<<<<<<< Updated upstream:app/src/main/java/com/modelo/todolistapp/View/NavigationDrawerActivity.kt
 import com.modelo.todolistapp.Fragments.AllTasksFragment
-import com.modelo.todolistapp.Fragments.ImportantTasksFragment
-import com.modelo.todolistapp.Fragments.PendingTasksFragment
-import com.modelo.todolistapp.Fragments.PlannedTasksFragment
 import com.modelo.todolistapp.R
-=======
-import com.modelo.todolistapp.UI.*
-import kotlinx.android.synthetic.*
->>>>>>> Stashed changes:app/src/main/java/com/modelo/todolistapp/NavigationDrawerActivity.kt
+import com.modelo.todolistapp.UI.NewListFragment
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_nd.*
 

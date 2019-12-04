@@ -12,9 +12,9 @@ import android.widget.Button
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
-import com.modelo.todolistapp.NavigationDrawerActivity
 
 import com.modelo.todolistapp.R
+import com.modelo.todolistapp.View.NavigationDrawerActivity
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 

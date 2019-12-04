@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.modelo.todolistapp.Class.DataBaseFireBase
+import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.Class.User
 import com.modelo.todolistapp.R
 import kotlinx.android.synthetic.main.activity_login.*
@@ -23,6 +24,7 @@ import kotlin.system.exitProcess
 class LoginActivity : AppCompatActivity() {
     private val database = DataBaseFireBase()
     var canLogIn = false
+    val sharedPreference: SharedPreference =SharedPreference(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +62,10 @@ class LoginActivity : AppCompatActivity() {
                                 var userGet = p0.getValue(User::class.java)
                                 if (userGet!!.password == editText_passwordLogin.text.toString().trim()) {
                                     canLogIn = userGet!!.verified
+                                    if(canLogIn){
+                                        sharedPreference.save("email", emailId)
+                                        sharedPreference.save("isLogged", true)
+                                    }
 
                                 } else {
                                     Toast.makeText(

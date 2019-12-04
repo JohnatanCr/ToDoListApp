@@ -1,12 +1,12 @@
 package com.modelo.todolistapp.Class
 
 data class User(
-    var idUser: String ,
-    var email: String,
-    var name: String,
-    var password: String,
-    var icon: Int,
-    var isVerified: Boolean
+    var idUser: String = "",
+    var email: String = "",
+    var name: String = "",
+    var password: String = "",
+    var icon: Int = 0,
+    var verified: Boolean = false
 ) {
 
     override fun equals(other: Any?): Boolean {

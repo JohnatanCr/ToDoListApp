@@ -1,4 +1,4 @@
-package com.modelo.todolistapp.View
+package com.modelo.todolistapp.View.SignUp
 
 import android.os.Bundle
 import android.text.Editable
@@ -148,6 +148,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
+
+
     private fun validateEmail(): Boolean {
         return if (!Patterns.EMAIL_ADDRESS.matcher(editText_emailRegister.text?.trim()).matches() || editText_emailRegister.text.isNullOrEmpty()) {
             textInputLayout_emailRegister.error = "Ingrese un Correo Valido"
@@ -156,8 +158,6 @@ class SignUpActivity : AppCompatActivity() {
             textInputLayout_emailRegister.error = null
             true
         }
-
-
     }
 
     private fun validateUserName(): Boolean {

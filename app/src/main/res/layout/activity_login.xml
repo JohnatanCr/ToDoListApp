@@ -62,7 +62,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_passwordRegister"
+            android:id="@+id/textInputLayout_passwordLogin"
             style="@style/CustomInputTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText_passwordRegister"
+                android:id="@+id/editText_passwordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />

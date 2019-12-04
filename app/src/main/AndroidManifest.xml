@@ -31,7 +31,7 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".View.SignUpActivity"
+            android:name=".View.SignUp.SignUpActivity"
             android:theme="@style/NoActionBar">
 
         </activity>

@@ -50,13 +50,14 @@ class SignUpActivity : AppCompatActivity() {
         button_createAccount.setOnClickListener {
             if (validateEmail() && validateUserName() && validatePassword() && validateConfirmPassword()) {
                 val user = User(
-                    editText_userNameRegister.text.toString().trim(),
+                    encodeUserEmail(editText_emailRegister.text.toString().trim()),
+                    encodeUserEmail(editText_emailRegister.text.toString().trim()),
                     editText_userNameRegister.text.toString().trim(),
                     editText_passwordRegister.text.toString(),
                     1234,
                     false
                 )
-                val usersRef = database.getReference("app").child("users").child(user.name)
+                val usersRef = database.getReference("app").child("users").child(user.idUser)
 
                 usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
@@ -65,7 +66,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     override fun onDataChange(p0: DataSnapshot) {
                         if (p0.value == null) {
-                            usersRef.child(editText_userNameRegister.text.toString()).setValue(user)
+                            usersRef.setValue(user)
                             Toast.makeText(
                                 this@SignUpActivity,
                                 "EXITO",
@@ -202,6 +203,9 @@ class SignUpActivity : AppCompatActivity() {
             textInputLayout_confirmPasswordRegister.error = null
             true
         }
+    }
+    private fun encodeUserEmail(userEmail: String): String {
+        return userEmail.replace(".", ",")
     }
 }
 

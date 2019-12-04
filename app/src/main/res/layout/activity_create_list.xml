@@ -34,19 +34,26 @@
             android:layout_height="wrap_content"
             android:text="Nombre de la lista"
             android:textSize="20sp"
+
             android:layout_marginLeft="20sp"/>
     </LinearLayout>
 
 
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="15">
+
         <EditText
             android:id="@+id/list_edtiText_nameList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:textSize="20sp"
+            android:hint="Nombre de la lista"
+            android:ems="15"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <LinearLayout
@@ -80,16 +87,64 @@
         android:textSize="20sp"
         android:layout_marginStart="20sp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15sp"
+            android:layout_marginEnd="-5sp"
+            android:textColor="#FD070505"
+            android:text="@string/todo"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:text="@string/fitness"
+            android:textColor="#FD070505"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:text="@string/hogar"
+            android:textColor="#FD070505"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:text="@string/trabajo"
+            android:textColor="#FD070505"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:text="@string/personal"
+            android:textColor="#FD070505"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:text="@string/compras"
+            android:textColor="#FD070505"/>
+
+    </LinearLayout>
+
     <HorizontalScrollView
         android:id="@+id/rg_iconos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="20sp"
-        android:layout_marginTop="20sp"
-        android:layout_gravity="left">
-
-
+        android:layout_marginTop="5sp">
 
         <RadioGroup
             android:id="@+id/icons_radio_group"
@@ -98,40 +153,46 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/ginjirotchi_radio_button"
+                android:id="@+id/all_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp" />
+                android:layout_marginTop="15sp"
+                android:drawableStart="@drawable/ic_all" />
 
             <RadioButton
-                android:id="@+id/hashizotchi_radio_button"
+                android:id="@+id/exercise_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp" />
+                android:layout_marginTop="15sp"
+                android:drawableStart="@drawable/ic_fitness"/>
 
             <RadioButton
-                android:id="@+id/kuchipatchi_radio_button"
+                android:id="@+id/home_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp" />
+                android:layout_marginTop="15sp"
+                android:drawableStart="@drawable/ic_home"/>
 
             <RadioButton
-                android:id="@+id/mametchi_radio_button"
+                android:id="@+id/work_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp"/>
+                android:layout_marginTop="15sp"
+                android:drawableStart="@drawable/ic_work"/>
 
             <RadioButton
-                android:id="@+id/mimitchi_radio_button"
+                android:id="@+id/personal_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp"/>
+                android:layout_marginTop="15sp"
+                android:drawableStart="@drawable/ic_personal"/>
 
             <RadioButton
-                android:id="@+id/pochitchi_radio_button"
+                android:id="@+id/shopping_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15sp" />
+                android:layout_marginTop="15sp"
+                android:drawableStart="@drawable/ic_shopping"/>
         </RadioGroup>
 
     </HorizontalScrollView>

@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
 
-    private var users: ArrayList<User> = arrayListOf()
     private val database = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +47,7 @@ class SignUpActivity : AppCompatActivity() {
             findViewById(R.id.textInputLayout_confirmPasswordRegister)
 
         button_createAccount.setOnClickListener {
+
             if (validateEmail() && validateUserName() && validatePassword() && validateConfirmPassword()) {
                 val user = User(
                     encodeUserEmail(editText_emailRegister.text.toString().trim()),
@@ -148,7 +148,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    fun validateEmail(): Boolean {
+    private fun validateEmail(): Boolean {
         return if (!Patterns.EMAIL_ADDRESS.matcher(editText_emailRegister.text?.trim()).matches() || editText_emailRegister.text.isNullOrEmpty()) {
             textInputLayout_emailRegister.error = "Ingrese un Correo Valido"
             false
@@ -160,7 +160,7 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    fun validateUserName(): Boolean {
+    private fun validateUserName(): Boolean {
         return if (editText_userNameRegister.text.isNullOrBlank()) {
             textInputLayout_userNameRegister.error = "Ingrese un nombre de Usuario"
             false
@@ -172,7 +172,7 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    fun validatePassword(): Boolean {
+    private fun validatePassword(): Boolean {
 
         return when {
             editText_passwordRegister.text!!.length < 8 -> {
@@ -192,7 +192,7 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    fun validateConfirmPassword(): Boolean {
+    private fun validateConfirmPassword(): Boolean {
         var password = editText_passwordRegister.text.toString()
         var confirmPassword = editText_confirmPasswordRegister.text.toString()
 
@@ -204,6 +204,7 @@ class SignUpActivity : AppCompatActivity() {
             true
         }
     }
+
     private fun encodeUserEmail(userEmail: String): String {
         return userEmail.replace(".", ",")
     }

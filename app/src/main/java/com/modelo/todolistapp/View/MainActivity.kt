@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fab.setOnClickListener {
-            val intent = Intent(this, editorTareasActivity::class.java)
+            val intent = Intent(this, CreateTaskActivity::class.java)
             startActivity(intent)
 
             rv = findViewById<RecyclerView>(R.id.rv).apply {

@@ -1,13 +1,13 @@
 package com.modelo.todolistapp.View
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.RadioButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -67,8 +67,7 @@ class DemoAdapter(private var tareas : ArrayList<Tarea>) : RecyclerView.Adapter<
 
  */
 
-class editorTareasActivity : AppCompatActivity() {
-
+class CreateTaskActivity : AppCompatActivity() {
 
     private lateinit var tvName: TextView
     private lateinit var tvDesc: TextView
@@ -82,10 +81,9 @@ class editorTareasActivity : AppCompatActivity() {
 
     private var tareas: ArrayList<Tarea> = arrayListOf()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.editortareas)
+        setContentView(R.layout.activity_create_task)
 
         tvName = findViewById(R.id.idname)
         tvDesc = findViewById(R.id.iddesc)
@@ -164,7 +162,5 @@ class editorTareasActivity : AppCompatActivity() {
                 rv.adapter?.notifyDataSetChanged()
             }
         })
-
-
     }
 }

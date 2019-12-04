@@ -38,11 +38,11 @@ class CreateListActivity : AppCompatActivity() {
 
 
         //Guardar la lista creada
-        /*
+/*
         btn_save.setOnClickListener{
             val lista = LocalList(
                 title = tv_ListName.toString(),
-                backgroundColor = btn_color.toString(),
+                backgroundColor = defaultColor.toString(),
                 listIcon = rg_iconos.checkedRadioButtonId,
                 idUser = "",
                 userName = "",
@@ -73,7 +73,9 @@ class CreateListActivity : AppCompatActivity() {
             NavigationDrawerActivity().addMenuItem()
         }
 
-         */
+ */
+
+
 
     }
 

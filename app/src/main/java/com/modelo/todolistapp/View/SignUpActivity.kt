@@ -48,12 +48,7 @@ class SignUpActivity : AppCompatActivity() {
             findViewById(R.id.textInputLayout_confirmPasswordRegister)
 
         button_createAccount.setOnClickListener {
-            if (validateEmail() && validateUserName() && validatePassword() && validateConfirmPassword() && !userExist(
-                    editText_userNameRegister.text.toString().trim()
-                )
-            ) {
-
-                val usersRef = database.getReference("app").child("users")
+            if (validateEmail() && validateUserName() && validatePassword() && validateConfirmPassword()) {
                 val user = User(
                     editText_userNameRegister.text.toString().trim(),
                     editText_userNameRegister.text.toString().trim(),
@@ -61,13 +56,30 @@ class SignUpActivity : AppCompatActivity() {
                     1234,
                     false
                 )
-                usersRef.child(editText_userNameRegister.text.toString()).setValue(user)
-            } else {
-                Toast.makeText(
-                    this,
-                    "Mierda",
-                    Toast.LENGTH_LONG
-                ).show()
+                val usersRef = database.getReference("app").child("users").child(user.name)
+
+                usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        if (p0.value == null) {
+                            usersRef.child(editText_userNameRegister.text.toString()).setValue(user)
+                            Toast.makeText(
+                                this@SignUpActivity,
+                                "EXITO",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@SignUpActivity,
+                                "Ya existe el usuario",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                })
             }
 
 
@@ -190,22 +202,6 @@ class SignUpActivity : AppCompatActivity() {
             textInputLayout_confirmPasswordRegister.error = null
             true
         }
-    }
-
-    fun userExist(idUser: String): Boolean {
-        var exist = false
-        database.getReference("users").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                    if (p0.child(idUser).exists()) {
-                        exist = true
-                    }
-                }
-            })
-        return exist
     }
 }
 

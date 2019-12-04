@@ -27,6 +27,8 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        database.setPersistenceEnabled(true)
+
         val editText_emailRegister: TextInputEditText = findViewById(R.id.editText_emailRegister)
         val editText_userNameRegister: TextInputEditText =
             findViewById(R.id.editText_userNameRegister)

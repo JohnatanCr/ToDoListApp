@@ -92,7 +92,7 @@ class editorTareasActivity : AppCompatActivity() {
         difBaja = findViewById(R.id.r1)
         difMedia = findViewById(R.id.r2)
         difAlta = findViewById(R.id.r3)
-        tvFechaVencimiento = findViewById(R.id.idFecha)
+        tvFechaVencimiento = findViewById(R.id.idexpire)
         btnAgregar = findViewById(R.id.btnAdd)
 
 

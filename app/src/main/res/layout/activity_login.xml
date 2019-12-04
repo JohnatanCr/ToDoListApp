@@ -82,13 +82,13 @@
 
 
         <Button
-            android:id="@+id/button_createAccount"
+            android:id="@+id/button_loginAccount"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="48dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="18dp"
-            android:text="Crear Cuenta"
+            android:text="Iniciar Sesion"
             android:textAllCaps="false"
             android:textSize="18sp" />
 

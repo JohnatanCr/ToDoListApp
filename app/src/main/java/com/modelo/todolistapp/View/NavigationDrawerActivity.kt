@@ -1,5 +1,6 @@
 package com.modelo.todolistapp.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
@@ -63,6 +64,7 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
     }
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when(menuItem.itemId){
+            /*
             R.id.todas -> {
                 allfragment = AllTasksFragment()
                 supportFragmentManager
@@ -111,9 +113,24 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
+             */
+            R.id.nuevaLista -> {
+                val intent = Intent(this, CreateListActivity::class.java)
+                startActivity(intent)
+            }
 
-            menuItem.itemId ->{
+            R.id.nuevaListaCompartida -> {
+                val intent = Intent(this, CreateSharedList::class.java)
+                startActivity(intent)
+            }
 
+            else -> {
+                allfragment = AllTasksFragment()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, allfragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
             }
 
         }

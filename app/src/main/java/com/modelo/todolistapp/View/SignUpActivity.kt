@@ -1,4 +1,4 @@
-package com.modelo.todolistapp.View.SignUp
+package com.modelo.todolistapp.View
 
 import android.os.Bundle
 import android.text.Editable

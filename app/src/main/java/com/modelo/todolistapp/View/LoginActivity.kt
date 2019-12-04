@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.modelo.todolistapp.Class.User
 import com.modelo.todolistapp.R
-import com.modelo.todolistapp.View.SignUp.SignUpActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlin.system.exitProcess
 

@@ -16,55 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.modelo.todolistapp.R
 
 
-class DemoAdapter(private val tareas: ArrayList<Tarea>) : RecyclerView.Adapter<DemoAdapter.DemoViewHolder>()
-{
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemoViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
-    override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onBindViewHolder(holder: DemoViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    class DemoViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        private var tvName: TextView
-        private var tvDate: TextView
-        private var checkboxito : CheckBox
-        private var tvExternoName : TextView
-        //private var btnDelete:Button
-
-        init {
-            tvName = view.findViewById(R.id.textname)
-            tvDate = view.findViewById(R.id.idFecha)
-            checkboxito = view.findViewById(R.id.idcheck)
-            tvExternoName = view.findViewById(R.id.idExterno)
-            //btnDelete=view.findViewById(R.id.delete_button)
-        }
-
-        public fun bind(tarea: Tarea) {
-            tvName.setText("${tarea.nombretarea}")
-            tvDate.setText("${tarea.fechavenc}")
-            tvExternoName.setText(("${tarea.nameexterno}"))
-
-
-            checkboxito.setOnClickListener {
-                val database = FirebaseDatabase.getInstance()
-                val usersRef = database.getReference("app").child("Tareas")
-                usersRef.child(tarea.id.toString()).removeValue()
-                Snackbar.make(it, "Tarea BORRADA!", Snackbar.LENGTH_INDEFINITE).setAction("Deshacer",
-                    {
-                        Snackbar.make(it, "Tarea recuperada!", Snackbar.LENGTH_LONG).show()
-                    })
-                    .show() //LOCAL
-            }
-        }
-    }
-}
-}
 
 
 class MainActivity : AppCompatActivity() {

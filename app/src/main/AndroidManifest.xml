@@ -11,16 +11,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".View.NavigationDrawerActivity" android:theme="@style/NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.CreateSharedList"></activity>
+        <activity
+            android:name=".View.CreateListActivity"
+            android:label="@string/title_activity_create_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".View.NavigationDrawerActivity"
+            android:theme="@style/NoActionBar" />
         <activity android:name=".View.MainActivity" />
-        <activity android:name=".View.LoginActivity" android:theme="@style/NoActionBar" android:screenOrientation="portrait">
+        <activity
+            android:name=".View.LoginActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".View.SignUpActivity"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".View.SignUpActivity" android:theme="@style/NoActionBar" android:screenOrientation="portrait">
         </activity>
     </application>
 

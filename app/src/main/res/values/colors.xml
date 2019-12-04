@@ -7,4 +7,6 @@
         <color name="TipColor">#7A7A7A</color>
         <color name="ErrorColor">#00B0F8</color>
         <color name="whiteColor">#ffffff</color>
+        <color name="ButtonColor">#0827A7</color>
+        <color name="CancelButton">#A30505</color>
 </resources>

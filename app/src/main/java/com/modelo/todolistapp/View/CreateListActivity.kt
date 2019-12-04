@@ -1,14 +1,14 @@
-package com.modelo.todolistapp.View
+package com.modelo.todolistapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.modelo.todolistapp.R
 
-class CreateListActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_list)
+        setContentView(R.layout.activity_login)
 
+        //PRUEBA 1
     }
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.CreateListActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginLeft="110sp">
+        <TextView
+            android:id="@+id/list_textView_addList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Añadir Lista"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/list_textView_nameList"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la lista"
+            android:textSize="20sp"
+            android:layout_marginLeft="20sp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/list_edtiText_nameList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_gravity="top"
+            android:id="@+id/list_textView_color"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:text="Color de fondo"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginStart="20sp"/>
+
+        <Spinner
+            android:id="@+id/spinner_color"
+            android:layout_width="156dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="70dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/list_textView_icono"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Icono de lista"
+            android:layout_marginLeft="20sp"/>
+        <Spinner
+            android:layout_marginLeft="70dp"
+            android:id="@+id/spinner_icono"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/list_button_crearLista"
+            android:layout_width="140sp"
+            android:layout_height="wrap_content"
+            android:text="Crear"
+            android:layout_marginLeft="20dp" />
+
+        <Button
+            android:id="@+id/list_button_cancelarLista"
+            android:layout_width="140sp"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:layout_marginLeft="60dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

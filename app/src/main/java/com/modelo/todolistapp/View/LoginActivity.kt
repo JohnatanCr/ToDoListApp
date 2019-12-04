@@ -3,6 +3,7 @@ package com.modelo.todolistapp.View
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
@@ -13,13 +14,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.modelo.todolistapp.Class.DataBaseFireBase
 import com.modelo.todolistapp.Class.User
 import com.modelo.todolistapp.R
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity() {
-    private val database = FirebaseDatabase.getInstance()
+    private val database = DataBaseFireBase()
+    var canLogIn = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,17 +36,19 @@ class LoginActivity : AppCompatActivity() {
             findViewById(R.id.textInputLayout_passwordLogin)
 
         val button_toRegister: Button = findViewById(R.id.button_toRegister)
+
         button_toRegister.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
+
         val button_loggInUser: Button = findViewById(R.id.button_loginAccount)
+
         button_loggInUser.setOnClickListener {
             if (validateEmail() && validatePassword())
                 try {
                     var emailId = encodeUserEmail(editText_emailLogin.text.toString().trim())
-                    val usersRef = database.getReference("app").child("users")
-                        .child(emailId)
+                    val usersRef = database.getUsersReference().child(emailId)
 
                     usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onCancelled(p0: DatabaseError) {
@@ -54,19 +59,7 @@ class LoginActivity : AppCompatActivity() {
                             if (p0.value != null) {
                                 var userGet = p0.getValue(User::class.java)
                                 if (userGet!!.password == editText_passwordLogin.text.toString().trim()) {
-                                    if (userGet!!.verified) {
-                                        Toast.makeText(
-                                            this@LoginActivity,
-                                            "EXITO",
-                                            Toast.LENGTH_LONG
-                                        ).show()
-                                    } else {
-                                        Toast.makeText(
-                                            this@LoginActivity,
-                                            "Verifique Su cuenta Plis",
-                                            Toast.LENGTH_LONG
-                                        ).show()
-                                    }
+                                    canLogIn = userGet!!.verified
 
                                 } else {
                                     Toast.makeText(
@@ -85,16 +78,24 @@ class LoginActivity : AppCompatActivity() {
                         }
                     })
 
-                } catch (firebaseException: FirebaseException) {
+
+                } catch (exception: Exception) {
 
                 }
-        }
+            else {
+                Toast.makeText(this, "Verifique Sus Campos", Toast.LENGTH_LONG)
+            }
 
+            if (canLogIn) {
+
+                startActivity(Intent(this, NavigationDrawerActivity::class.java))
+            }
+        }
 
     }
 
     override fun onBackPressed() {
-        exitProcess(-1)
+        finish()
     }
 
     private fun validateEmail(): Boolean {
@@ -129,7 +130,4 @@ class LoginActivity : AppCompatActivity() {
         return userEmail.replace(".", ",")
     }
 
-    private fun decodeUserEmail(userEmail: String): String {
-        return userEmail.replace(",", ".")
-    }
 }

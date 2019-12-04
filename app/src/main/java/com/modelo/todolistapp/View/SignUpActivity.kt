@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.modelo.todolistapp.Class.DataBaseFireBase
 import com.modelo.todolistapp.Class.User
 import com.modelo.todolistapp.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -20,13 +21,12 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
 
-    private val database = FirebaseDatabase.getInstance()
+    private val database = DataBaseFireBase()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        database.setPersistenceEnabled(true)
 
         val editText_emailRegister: TextInputEditText = findViewById(R.id.editText_emailRegister)
         val editText_userNameRegister: TextInputEditText =
@@ -57,7 +57,7 @@ class SignUpActivity : AppCompatActivity() {
                     1234,
                     false
                 )
-                val usersRef = database.getReference("app").child("users").child(user.idUser)
+                val usersRef = database.getUsersReference().child(user.idUser)
 
                 usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
@@ -82,7 +82,6 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 })
             }
-
 
         }
 

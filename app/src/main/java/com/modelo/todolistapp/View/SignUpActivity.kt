@@ -1,11 +1,15 @@
 package com.modelo.todolistapp.View
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -21,10 +25,15 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 class SignUpActivity : AppCompatActivity() {
 
     private val database = DataBaseFireBase()
+    private lateinit var currentImageView: ImageView
+    var selectedIcon = 0
+    var image = 1;
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
 
 
         val editText_emailRegister: TextInputEditText = findViewById(R.id.editText_emailRegister)
@@ -45,6 +54,61 @@ class SignUpActivity : AppCompatActivity() {
         val textInputLayoutConfirmPasswordRegister: TextInputLayout =
             findViewById(R.id.textInputLayout_confirmPasswordRegister)
 
+        val imageBlackWoman: ImageView = findViewById(R.id.ImageBlackWoman)
+        val imageGrayWoman : ImageView = findViewById(R.id.GrayWoman)
+        val imageGreenWoman: ImageView = findViewById(R.id.ImageGreenWoman)
+        val imageBlackMan  : ImageView= findViewById(R.id.ImageBlackMan)
+        val imageGrayMan : ImageView = findViewById(R.id.ManGray)
+        val imageWeroMan : ImageView = findViewById(R.id.ImageWeroMan)
+
+        currentImageView = imageBlackWoman
+        currentImageView.foreground.alpha = 0
+        selectedIcon = R.drawable.ic_usr_boy1
+
+        imageBlackWoman.setOnClickListener {
+            image = 1
+            changeSelectedIcon(
+                imageBlackWoman,
+                R.drawable.ic_usr_boy1
+            )
+        }
+        imageGrayWoman.setOnClickListener {
+            image = 2
+            changeSelectedIcon(
+                imageGrayWoman,
+                R.drawable.ic_usr_woman
+            )
+        }
+        imageGreenWoman.setOnClickListener {
+            image = 3
+            changeSelectedIcon(
+                imageGreenWoman,
+                R.drawable.ic_usr_woman1
+            )
+        }
+        imageBlackMan.setOnClickListener {
+            image = 4
+            changeSelectedIcon(
+                imageBlackMan,
+                R.drawable.ic_usr_boy2
+            )
+        }
+        imageGrayMan.setOnClickListener {
+            image = 5
+            changeSelectedIcon(
+                imageGrayMan,
+                R.drawable.ic_usr_boy3
+            )
+        }
+        imageWeroMan.setOnClickListener {
+            image = 6
+            changeSelectedIcon(
+                imageWeroMan,
+                R.drawable.ic_usr_woman2
+            )
+        }
+
+
         button_createAccount.setOnClickListener {
 
             if (validateEmail() && validateUserName() && validatePassword() && validateConfirmPassword()) {
@@ -53,7 +117,7 @@ class SignUpActivity : AppCompatActivity() {
                     encodeUserEmail(editText_emailRegister.text.toString().trim()),
                     editText_userNameRegister.text.toString().trim(),
                     editText_passwordRegister.text.toString(),
-                    1234,
+                    selectedIcon,
                     false
                 )
                 val usersRef = database.getUsersReference().child(user.idUser)
@@ -142,7 +206,6 @@ class SignUpActivity : AppCompatActivity() {
             }
         })
 
-
     }
 
 
@@ -201,6 +264,22 @@ class SignUpActivity : AppCompatActivity() {
             textInputLayout_confirmPasswordRegister.error = null
             true
         }
+    }
+
+    @SuppressLint("NewApi")
+    private fun changeSelectedIcon(selectedImageView: ImageView, idResource: Int) {
+        if (currentImageView == selectedImageView && selectedIcon == idResource) return
+
+        //IMAGEVIEW PREVIO-SELECCIONADO CON OSCURIDAD (OPACACIDAD :)
+        currentImageView.foreground.alpha = 255
+
+        //IMAGEVIEW SET NUEVO ICONO
+
+        currentImageView = selectedImageView
+        //IMAGEVIEW NUEVO ICONO (IMAGEVIEW) SIN OSCURIDAD
+        currentImageView.foreground.alpha = 0
+        selectedIcon = idResource
+
     }
 
     private fun encodeUserEmail(userEmail: String): String {

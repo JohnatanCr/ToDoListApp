@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 
 class SharedPreference(val context: Context) {
     private val PREFS_NAME = "email"
-    val sharedPref: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    val sharedPref: SharedPreferences =
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     fun save(KEY_NAME: String, value: String) {
         val editor: SharedPreferences.Editor = sharedPref.edit()
@@ -32,6 +33,14 @@ class SharedPreference(val context: Context) {
         editor.commit()
     }
 
+    fun saveLogInUser(KEY_NAME: String, user: User) {
+        save("email", user.email)
+        save("nombre", user.name)
+        save("icono", user.icon)
+        save("verified", true)
+        save("isLogged",true)
+    }
+
     fun getValueString(KEY_NAME: String): String? {
 
         return sharedPref.getString(KEY_NAME, null)
@@ -45,6 +54,15 @@ class SharedPreference(val context: Context) {
     fun getValueBoolean(KEY_NAME: String): Boolean? {
 
         return sharedPref.getBoolean(KEY_NAME, false)
+    }
+
+    fun getValueUser(KEY_NAME: String): User {
+        return User(
+            getValueString("email")!!, getValueString("email")!!,
+            getValueString("nombre")!!, "",
+            getValueInt("icono")!!,
+            getValueBoolean("verified")!!
+        )
     }
 
     fun clearSharedPreference() {

@@ -2,6 +2,7 @@ package com.modelo.todolistapp.View
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
@@ -21,10 +22,25 @@ class LoginActivity : AppCompatActivity() {
     private val database = DataBaseFireBase()
     var canLogIn = false
 
+    companion object {
+        lateinit var sharedPreference: SharedPreference
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val sharedPreference: SharedPreference =SharedPreference(this)
+
+        sharedPreference = SharedPreference(this)
+
+        if (sharedPreference.getValueBoolean("isLogged")!!) {
+            startActivity(
+                Intent(
+                    this@LoginActivity,
+                    NavigationDrawerActivity::class.java
+
+                )
+            )
+        }
 
         val editText_emailLogin: TextInputEditText = findViewById(R.id.editText_emailLogin)
         val editText_passwordLogin: TextInputEditText = findViewById(R.id.editText_passwordLogin)
@@ -43,7 +59,8 @@ class LoginActivity : AppCompatActivity() {
         val button_loggInUser: Button = findViewById(R.id.button_loginAccount)
 
         button_loggInUser.setOnClickListener {
-            if (validateEmail() && validatePassword()){
+            try {
+                if (validateEmail() && validatePassword()) {
                     var emailId = encodeUserEmail(editText_emailLogin.text.toString().trim())
                     val usersRef = database.getUsersReference().child(emailId)
 
@@ -57,21 +74,27 @@ class LoginActivity : AppCompatActivity() {
                                 var userGet = p0.getValue(User::class.java)
                                 if (userGet!!.password == editText_passwordLogin.text.toString().trim()) {
                                     canLogIn = userGet!!.verified
-                                    if(canLogIn){
-                                        sharedPreference.save("email", decodeUserEmail(emailId))
-                                        sharedPreference.save("nombre", userGet.name)
-                                        sharedPreference.save("isLogged", true)
+                                    if (canLogIn) {
+                                        sharedPreference.saveLogInUser("usuario",userGet)
 
-                                        startActivity(Intent(this@LoginActivity, NavigationDrawerActivity::class.java))
-                                    }
-                                    else{
-                                        Toast.makeText(this@LoginActivity, "Cuenta no autorizada", Toast.LENGTH_LONG).show()
+                                        startActivity(
+                                            Intent(
+                                                this@LoginActivity,
+                                                NavigationDrawerActivity::class.java
+                                            )
+                                        )
+                                    } else {
+                                        Toast.makeText(
+                                            this@LoginActivity,
+                                            "Verifique Su Cuenta",
+                                            Toast.LENGTH_LONG
+                                        ).show()
                                     }
 
                                 } else {
                                     Toast.makeText(
                                         this@LoginActivity,
-                                        "La Contraseña Es Incorrecto",
+                                        "La Contraseña Es INCORRECTA",
                                         Toast.LENGTH_LONG
                                     ).show()
                                 }
@@ -84,9 +107,11 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }
                     })
-            }
-            else {
-                Toast.makeText(this, "Verifique Sus Campos", Toast.LENGTH_LONG)
+                } else {
+                    Toast.makeText(this, "Verifique Sus Campos", Toast.LENGTH_LONG)
+                }
+            } catch (e: Exception) {
+                Log.println(taskId, "ERROR LOGIN", e.message)
             }
 /*
             if (canLogIn) {

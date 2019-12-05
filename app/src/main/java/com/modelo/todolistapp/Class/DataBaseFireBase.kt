@@ -19,5 +19,8 @@ class DataBaseFireBase {
     fun getListReference() :DatabaseReference{
         return database.getReference("app").child("lists")
     }
+    fun getParticulaUserReference(idUser : String) : DatabaseReference{
+        return getUsersReference().child(idUser)
+    }
 
 }

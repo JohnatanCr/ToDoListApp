@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.modelo.todolistapp.Class.DataBaseFireBase
 import com.modelo.todolistapp.Class.LocalList
 import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.Fragments.AllTasksFragment
@@ -25,7 +26,7 @@ class CreateListActivity : AppCompatActivity() {
     private lateinit var rg_iconos : RadioGroup
     private lateinit var btn_save : Button
     private lateinit var btn_cancel : Button
-    private val database = FirebaseDatabase.getInstance()
+    private val database = DataBaseFireBase()
     private var defaultColor : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +63,7 @@ class CreateListActivity : AppCompatActivity() {
             if(!validarLista(lista))
             {
                 //TODO: identificar al usuario loggeado para añadir al path
-                val listRef = database.getReference("app").child("users").child(userId).child("listasLocales").child(lista.idList)
+                val listRef = database.getParticulaUserReference(userId).child("listasLocales").child(lista.idList)
 
                 listRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {

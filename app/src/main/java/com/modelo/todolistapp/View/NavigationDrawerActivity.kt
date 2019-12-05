@@ -4,11 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.children
+import androidx.core.view.get
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import com.modelo.todolistapp.Class.LocalList
@@ -125,8 +128,7 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
             }
              */
             R.id.nuevaLista -> {
-                val intent = Intent(this, CreateListActivity::class.java)
-                val i = Intent(this, LocalList::class.java)
+                val i = Intent(this, CreateListActivity::class.java)
                 startActivityForResult(i, REQUEST_CODE_NEW_ENTRY)
             }
 
@@ -166,16 +168,17 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
         if (requestCode == REQUEST_CODE_NEW_ENTRY) {
             if (resultCode == Activity.RESULT_OK) {
                 val entry: LocalList? = data?.getParcelableExtra("newList")
-                nav_view.menu.add(entry!!.title)
+                //LLAMADA A FUNCION
+                addMenuItem(entry)
             }
         }
     }
-
-    fun addMenuItem(namelist : String) {
+        //AHORA RECIBE LA LOCAL LIST NO SOLO UN STRING
+    fun addMenuItem(localList: LocalList?) {
 
         var navView : NavigationView = nav_view
         var menu = navView.menu
-        menu.add(0,0,1,namelist)
+        menu.add(R.id.taskList, Menu.NONE ,1,localList!!.title)//.setIcon(localList!!.listIcon)
 
     }
 

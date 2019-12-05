@@ -3,34 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group_impList"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/todas"
             android:title="Todas"
-            />
+            android:orderInCategory="0"/>
 
         <item
             android:id="@+id/importantes"
             android:title="Importantes"
-            />
+            android:orderInCategory="0"/>
 
         <item
             android:id="@+id/planeadas"
             android:title="Planeadas"
-            />
+            android:orderInCategory="0" />
 
     </group>
 
-    <item android:title="Listas de tareas">
+    <item
+        android:id="@+id/taskList"
+        android:title="Listas de tareas">
 
         <menu>
             <item
                 android:id="@+id/pendientes"
-                android:title="Pendientes"/>
+                android:title="Pendientes"
+                android:orderInCategory="1"/>
             <item
                 android:id="@+id/nuevaLista"
-                android:title="+ Nueva lista"/>
+                android:title="+ Nueva lista"
+                android:orderInCategory="1"/>
         </menu>
 
     </item>

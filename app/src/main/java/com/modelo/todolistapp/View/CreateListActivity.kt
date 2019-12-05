@@ -40,6 +40,7 @@ class CreateListActivity : AppCompatActivity() {
         btn_cancel = findViewById(R.id.list_button_cancelarLista)
 
         var userId : String = sharedPreference.getValueString("email")!!
+        userId = encodeUserEmail(userId)
 
 
         btn_color.setOnClickListener { openColorPicker() }
@@ -109,5 +110,8 @@ class CreateListActivity : AppCompatActivity() {
             }
         })
         colorPicker.show()
+    }
+    private fun encodeUserEmail(userEmail: String): String {
+        return userEmail.replace(".", ",")
     }
 }

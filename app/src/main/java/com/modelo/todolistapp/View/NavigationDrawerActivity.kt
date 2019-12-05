@@ -48,6 +48,7 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
 
         nav_view.setNavigationItemSelectedListener (this)
 
+
         allfragment = AllTasksFragment()
         supportFragmentManager
             .beginTransaction()
@@ -151,13 +152,12 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
         }
     }
 
-    fun addMenuItem() {
+    fun addMenuItem(namelist : String) {
 
         var navView : NavigationView = nav_view
         var menu = navView.menu
-        menu.add(0,1,0,"Nombre de lista")
+        menu.add(0,0,1,namelist)
 
-        navView.invalidate()
     }
 
 }

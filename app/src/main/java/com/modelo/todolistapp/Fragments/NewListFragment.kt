@@ -46,7 +46,7 @@ class NewListFragment : Fragment() {
         val btn : Button = view.findViewById(R.id.button)
         btn.setOnClickListener{
 
-            NavigationDrawerActivity().addMenuItem()
+            //NavigationDrawerActivity().addMenuItem()
 
         }
 

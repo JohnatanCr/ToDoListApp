@@ -75,8 +75,9 @@ class CreateListActivity : AppCompatActivity() {
                             ).show()
                     }
                 })
-                //NavigationDrawerActivity().addMenuItem()
+                NavigationDrawerActivity().addMenuItem(tv_ListName.text.toString())
                 startActivity(Intent(this, NavigationDrawerActivity::class.java))
+                finish()
 
             }
             else{

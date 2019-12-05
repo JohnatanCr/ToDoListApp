@@ -47,8 +47,7 @@ class LoginActivity : AppCompatActivity() {
         val button_loggInUser: Button = findViewById(R.id.button_loginAccount)
 
         button_loggInUser.setOnClickListener {
-            if (validateEmail() && validatePassword())
-                try {
+            if (validateEmail() && validatePassword()){
                     var emailId = encodeUserEmail(editText_emailLogin.text.toString().trim())
                     val usersRef = database.getUsersReference().child(emailId)
 
@@ -65,6 +64,11 @@ class LoginActivity : AppCompatActivity() {
                                     if(canLogIn){
                                         sharedPreference.save("email", emailId)
                                         sharedPreference.save("isLogged", true)
+
+                                        startActivity(Intent(this@LoginActivity, NavigationDrawerActivity::class.java))
+                                    }
+                                    else{
+                                        Toast.makeText(this@LoginActivity, "Cuenta no autorizada", Toast.LENGTH_LONG).show()
                                     }
 
                                 } else {
@@ -83,19 +87,18 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }
                     })
-
-
-                } catch (exception: Exception) {
-
-                }
+            }
             else {
                 Toast.makeText(this, "Verifique Sus Campos", Toast.LENGTH_LONG)
             }
-
+/*
             if (canLogIn) {
 
                 startActivity(Intent(this, NavigationDrawerActivity::class.java))
             }
+            else{
+                Toast.makeText(this@LoginActivity, "Cuenta no autorizada", Toast.LENGTH_LONG).show()
+            }*/
         }
 
     }

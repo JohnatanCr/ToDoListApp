@@ -1,6 +1,7 @@
 package com.modelo.todolistapp.View
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
+import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.Fragments.AllTasksFragment
 import com.modelo.todolistapp.R
 import com.modelo.todolistapp.UI.NewListFragment
@@ -28,6 +30,7 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
+        val sharedPreference: SharedPreference =SharedPreference(this)
 
         setSupportActionBar(toolBar)
         val actionBar = supportActionBar
@@ -61,6 +64,8 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
         tvUserName=headerLayout.findViewById(R.id.tv_username)
         tvUserMail=headerLayout.findViewById(R.id.tv_mail)
 
+        tvUserName.text = sharedPreference.getValueString("nombre")
+        tvUserMail.text = sharedPreference.getValueString("email")
         //addMenuItemInNavMenuDrawer()
     }
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {

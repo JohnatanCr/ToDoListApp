@@ -74,7 +74,7 @@ class CreateListActivity : AppCompatActivity() {
                             listRef.setValue(lista)
                             Toast.makeText(
                                 this@CreateListActivity,
-                                "EXITO",
+                                "EXITO!",
                                 Toast.LENGTH_LONG
                             ).show()
                     }

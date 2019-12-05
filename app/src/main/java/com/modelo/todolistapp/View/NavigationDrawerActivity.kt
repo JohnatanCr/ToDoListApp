@@ -191,7 +191,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
         try {
             var navView: NavigationView = nav_view
             var menu = navView.menu
-            menu.add(R.id.taskList, Menu.NONE, 1, localList!!.title)//.setIcon(localList!!.listIcon)
+            menu.add(R.id.groupLists, Menu.NONE, 1, localList!!.title)//.setIcon(localList!!.listIcon)
         } catch (e: Exception) {
             Log.println(taskId, "error", e.localizedMessage)
         }

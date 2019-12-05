@@ -1,5 +1,6 @@
 package com.modelo.todolistapp.View
 
+import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
+import com.modelo.todolistapp.Class.LocalList
 import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.Fragments.AllTasksFragment
 import com.modelo.todolistapp.R
@@ -24,13 +26,15 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
 
     private lateinit var tvUserName: TextView
     private lateinit var tvUserMail: TextView
-
+    companion object {
+        val REQUEST_CODE_NEW_ENTRY = 1
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
-        val sharedPreference: SharedPreference =SharedPreference(this)
+        val sharedPreference: SharedPreference = SharedPreference(this)
 
         setSupportActionBar(toolBar)
         val actionBar = supportActionBar
@@ -122,8 +126,8 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
              */
             R.id.nuevaLista -> {
                 val intent = Intent(this, CreateListActivity::class.java)
-                startActivity(intent)
-                finish()
+                val i = Intent(this, LocalList::class.java)
+                startActivityForResult(i, REQUEST_CODE_NEW_ENTRY)
             }
 
             R.id.nuevaListaCompartida -> {
@@ -154,6 +158,16 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
             }
         else{
             super.onBackPressed()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_NEW_ENTRY) {
+            if (resultCode == Activity.RESULT_OK) {
+                val entry: LocalList? = data?.getParcelableExtra("newList")
+                nav_view.menu.add(entry!!.title)
+            }
         }
     }
 

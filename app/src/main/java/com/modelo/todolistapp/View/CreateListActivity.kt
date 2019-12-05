@@ -1,5 +1,6 @@
 package com.modelo.todolistapp.View
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.modelo.todolistapp.Class.LocalList
 import com.modelo.todolistapp.Class.SharedPreference
+import com.modelo.todolistapp.Fragments.AllTasksFragment
 import com.modelo.todolistapp.R
 import yuku.ambilwarna.AmbilWarnaDialog
 
@@ -75,8 +77,10 @@ class CreateListActivity : AppCompatActivity() {
                             ).show()
                     }
                 })
-                NavigationDrawerActivity().addMenuItem(tv_ListName.text.toString())
-                startActivity(Intent(this, NavigationDrawerActivity::class.java))
+
+               // val entry:LocalList? = LocalList()
+                val intent = Intent().apply { putExtra("newList", lista) }
+                setResult(Activity.RESULT_OK, intent)
                 finish()
 
             }

@@ -1,14 +1,18 @@
 package com.modelo.todolistapp.Class
 
-data class LocalList(
-    var idList : String,
-    var idUser : String,
-    var userName : String,
-    var title: String,
-    var backgroundColor: String,
-    var listIcon: Int
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-){
+@Parcelize
+data class LocalList(
+    var idList: String = "",
+    var idUser: String = "",
+    var userName: String = "",
+    var title: String = "",
+    var backgroundColor: String = "",
+    var listIcon: Int = 0
+
+) : Parcelable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

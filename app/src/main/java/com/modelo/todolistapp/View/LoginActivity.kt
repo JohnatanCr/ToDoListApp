@@ -24,11 +24,11 @@ import kotlin.system.exitProcess
 class LoginActivity : AppCompatActivity() {
     private val database = DataBaseFireBase()
     var canLogIn = false
-    val sharedPreference: SharedPreference =SharedPreference(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val sharedPreference: SharedPreference =SharedPreference(this)
 
         val editText_emailLogin: TextInputEditText = findViewById(R.id.editText_emailLogin)
         val editText_passwordLogin: TextInputEditText = findViewById(R.id.editText_passwordLogin)

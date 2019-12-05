@@ -3,10 +3,9 @@ package com.modelo.todolistapp.View
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.RadioButton
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -34,7 +33,7 @@ data class Tarea(var nombretarea : String = "", var descripcion : String = "", v
 
 }
 
-/*
+
 class DemoAdapter(private var tareas : ArrayList<Tarea>) : RecyclerView.Adapter<DemoAdapter.DemoViewHolder>() {
     override fun getItemCount(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -65,7 +64,7 @@ class DemoAdapter(private var tareas : ArrayList<Tarea>) : RecyclerView.Adapter<
     }
 }
 
- */
+
 
 class CreateTaskActivity : AppCompatActivity() {
 

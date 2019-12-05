@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.CreateTaskActivity"
     android:layout_margin="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".View.CreateTaskActivity">
 
     <EditText
         android:id="@+id/idname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Nombre tarea"
         android:inputType="textPersonName"
-        android:text="Nombre tarea"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/iddesc"
@@ -24,18 +25,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:ems="10"
+        android:hint="Descripción (opcional)"
         android:inputType="textPersonName"
-        android:text="Descripción (opcional)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout9"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="504dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/r1"
@@ -80,8 +83,8 @@
         android:layout_marginEnd="164dp"
         android:layout_marginBottom="424dp"
         android:ems="10"
+        android:hint="Fecha de vencimiento (opcional)"
         android:inputType="textPersonName"
-        android:text="Fecha de vencimiento (opcional)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -99,8 +102,9 @@
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="244dp"
+        android:layout_marginEnd="120dp"
         android:layout_marginBottom="352dp"
+        android:backgroundTint="@color/ButtonColor"
         android:text="AGREGAR TAREA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

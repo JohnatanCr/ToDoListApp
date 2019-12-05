@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.modelo.todolistapp.R
 
 
-class DemoAdapter(private val tareas: ArrayList<Tarea>) : RecyclerView.Adapter<DemoAdapter.DemoViewHolder>()
+/*class DemoAdapter(private val tareas: ArrayList<Tarea>) : RecyclerView.Adapter<DemoAdapter.DemoViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemoViewHolder {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -65,7 +65,7 @@ class DemoAdapter(private val tareas: ArrayList<Tarea>) : RecyclerView.Adapter<D
             }
         }
     }
-}
+}*/
 
 
 
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             rv = findViewById<RecyclerView>(R.id.rv).apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(this@MainActivity)
-                adapter = DemoAdapter(tareas)
+                //adapter = DemoAdapter(tareas)
             }
 
 

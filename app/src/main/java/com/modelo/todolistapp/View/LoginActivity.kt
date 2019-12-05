@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.modelo.todolistapp.Class.DataBaseFireBase
+import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.Class.User
 import com.modelo.todolistapp.R
 import kotlinx.android.synthetic.main.activity_login.*
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val sharedPreference: SharedPreference =SharedPreference(this)
 
         val editText_emailLogin: TextInputEditText = findViewById(R.id.editText_emailLogin)
         val editText_passwordLogin: TextInputEditText = findViewById(R.id.editText_passwordLogin)
@@ -41,8 +43,7 @@ class LoginActivity : AppCompatActivity() {
         val button_loggInUser: Button = findViewById(R.id.button_loginAccount)
 
         button_loggInUser.setOnClickListener {
-            if (validateEmail() && validatePassword())
-                try {
+            if (validateEmail() && validatePassword()){
                     var emailId = encodeUserEmail(editText_emailLogin.text.toString().trim())
                     val usersRef = database.getUsersReference().child(emailId)
 
@@ -56,6 +57,15 @@ class LoginActivity : AppCompatActivity() {
                                 var userGet = p0.getValue(User::class.java)
                                 if (userGet!!.password == editText_passwordLogin.text.toString().trim()) {
                                     canLogIn = userGet!!.verified
+                                    if(canLogIn){
+                                        sharedPreference.save("email", emailId)
+                                        sharedPreference.save("isLogged", true)
+
+                                        startActivity(Intent(this@LoginActivity, NavigationDrawerActivity::class.java))
+                                    }
+                                    else{
+                                        Toast.makeText(this@LoginActivity, "Cuenta no autorizada", Toast.LENGTH_LONG).show()
+                                    }
 
                                 } else {
                                     Toast.makeText(
@@ -73,21 +83,20 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }
                     })
-
-
-                } catch (exception: Exception) {
-
-                }
+            }
             else {
                 Toast.makeText(this, "Verifique Sus Campos", Toast.LENGTH_LONG)
             }
-
+/*
             if (canLogIn) {
 
                 startActivity(Intent(this, NavigationDrawerActivity::class.java))
             }else{
 
             }
+            else{
+                Toast.makeText(this@LoginActivity, "Cuenta no autorizada", Toast.LENGTH_LONG).show()
+            }*/
         }
 
     }

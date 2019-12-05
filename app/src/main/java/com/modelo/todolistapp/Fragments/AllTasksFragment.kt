@@ -19,6 +19,7 @@ class AllTasksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_all_tasks, container, false)
     }
 

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F7FC"
+    android:background="@drawable/decoration_background_color"
+    android:hapticFeedbackEnabled="false"
     tools:context=".View.SignUpActivity">
-
 
 
     <TextView

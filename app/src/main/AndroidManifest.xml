@@ -18,22 +18,23 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.NavigationDrawerActivity"
-            android:theme="@style/NoActionBar" >
-        </activity>
+            android:theme="@style/NoActionBar"></activity>
         <activity android:name=".View.MainActivity" />
         <activity
             android:name=".View.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity
 
             >
         <activity
             android:name=".View.SignUpActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
 
         </activity>

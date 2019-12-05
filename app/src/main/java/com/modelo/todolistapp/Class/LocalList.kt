@@ -1,12 +1,13 @@
 package com.modelo.todolistapp.Class
 
 data class LocalList(
-    var idUser: String,
+    var idList : String,
+    var idUser : String,
     var userName : String,
     var title: String,
     var backgroundColor: String,
-    var listIcon: Int,
-    var idList : String
+    var listIcon: Int
+
 ){
 
     override fun equals(other: Any?): Boolean {

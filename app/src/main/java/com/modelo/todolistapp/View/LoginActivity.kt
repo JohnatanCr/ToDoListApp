@@ -1,24 +1,20 @@
 package com.modelo.todolistapp.View
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.FirebaseException
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.modelo.todolistapp.Class.DataBaseFireBase
 import com.modelo.todolistapp.Class.User
 import com.modelo.todolistapp.R
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity() {
     private val database = DataBaseFireBase()
@@ -89,6 +85,8 @@ class LoginActivity : AppCompatActivity() {
             if (canLogIn) {
 
                 startActivity(Intent(this, NavigationDrawerActivity::class.java))
+            }else{
+
             }
         }
 

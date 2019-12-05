@@ -58,7 +58,8 @@ class LoginActivity : AppCompatActivity() {
                                 if (userGet!!.password == editText_passwordLogin.text.toString().trim()) {
                                     canLogIn = userGet!!.verified
                                     if(canLogIn){
-                                        sharedPreference.save("email", emailId)
+                                        sharedPreference.save("email", decodeUserEmail(emailId))
+                                        sharedPreference.save("nombre", userGet.name)
                                         sharedPreference.save("isLogged", true)
 
                                         startActivity(Intent(this@LoginActivity, NavigationDrawerActivity::class.java))
@@ -135,6 +136,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun encodeUserEmail(userEmail: String): String {
         return userEmail.replace(".", ",")
+    }
+
+    private fun decodeUserEmail(userEmail: String): String {
+        return userEmail.replace(",", ".")
     }
 
 }

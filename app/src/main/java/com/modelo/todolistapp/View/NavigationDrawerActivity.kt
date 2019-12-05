@@ -117,11 +117,13 @@ class NavigationDrawerActivity : AppCompatActivity(), NavigationView.OnNavigatio
             R.id.nuevaLista -> {
                 val intent = Intent(this, CreateListActivity::class.java)
                 startActivity(intent)
+                finish()
             }
 
             R.id.nuevaListaCompartida -> {
                 val intent = Intent(this, CreateSharedList::class.java)
                 startActivity(intent)
+                finish()
             }
 
             else -> {

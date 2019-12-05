@@ -1,5 +1,6 @@
 package com.modelo.todolistapp.View
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.LocaleList
@@ -10,10 +11,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.modelo.todolistapp.Class.LocalList
+import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.R
 import yuku.ambilwarna.AmbilWarnaDialog
 
 class CreateListActivity : AppCompatActivity() {
+
 
     private lateinit var tv_ListName : EditText
     private lateinit var btn_color : Button
@@ -26,6 +29,7 @@ class CreateListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_list)
+        val sharedPreference = SharedPreference(this)
 
         tv_ListName = findViewById(R.id.list_edtiText_nameList)
         btn_color = findViewById(R.id.btn_color)
@@ -33,27 +37,29 @@ class CreateListActivity : AppCompatActivity() {
         btn_save = findViewById(R.id.list_button_crearLista)
         btn_cancel = findViewById(R.id.list_button_cancelarLista)
 
+        var userId : String = sharedPreference.getValueString("email")!!
+
 
         btn_color.setOnClickListener { openColorPicker() }
 
 
         //Guardar la lista creada
-/*
+
         btn_save.setOnClickListener{
             val lista = LocalList(
-                title = tv_ListName.toString(),
-                backgroundColor = defaultColor.toString(),
+                title = tv_ListName.text.toString().trim(),
+                backgroundColor = defaultColor.toString().trim(),
                 listIcon = rg_iconos.checkedRadioButtonId,
-                idUser = "",
-                userName = "",
-                idList = tv_ListName.toString())
+                idUser = userId.trim(),
+                userName = "username",
+                idList = tv_ListName.text.toString().trim())
 
 
             //TODO: crear funcion para validar lista
-            if(validarLista(lista))
+            if(!validarLista(lista))
             {
                 //TODO: identificar al usuario loggeado para añadir al path
-                val listRef = database.getReference("app").child("users").child(user.idUser).child("listasLocales").child(lista.idList)
+                val listRef = database.getReference("app").child("users").child(userId).child("listasLocales").child(lista.idList)
 
                 listRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
@@ -69,18 +75,20 @@ class CreateListActivity : AppCompatActivity() {
                             ).show()
                     }
                 })
+                //NavigationDrawerActivity().addMenuItem()
+                startActivity(Intent(this, NavigationDrawerActivity::class.java))
+
             }
-            NavigationDrawerActivity().addMenuItem()
+            else{
+                Toast.makeText(this, "Verifique Sus Campos", Toast.LENGTH_LONG).show()
+            }
+
         }
-
- */
-
-
 
     }
 
     private fun validarLista(lista : LocalList): Boolean{
-        return if(tv_ListName.text.isNotBlank() || rg_iconos.checkedRadioButtonId == -1){
+        return if(tv_ListName.text.isNotBlank() && rg_iconos.checkedRadioButtonId != -1){
             false
         }else
             return true

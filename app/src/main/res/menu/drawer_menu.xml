@@ -62,5 +62,10 @@
 
     </item>
 
+    <item android:title="Cerrar sesión"
+        android:orderInCategory="10"
+        android:id="@+id/close_session"/>
+
+
 
 </menu>

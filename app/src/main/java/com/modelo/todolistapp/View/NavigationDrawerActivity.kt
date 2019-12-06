@@ -148,8 +148,14 @@ class NavigationDrawerActivity : AppCompatActivity(),
             }
 
             R.id.nuevaListaCompartida -> {
-                val intent = Intent(this, CreateSharedList::class.java)
-                startActivity(intent)
+            val intent = Intent(this, CreateSharedList::class.java)
+            startActivity(intent)
+        }
+            R.id.close_session -> {
+                sharedPreference.clearSharedPreference()
+                val i = Intent(this, LoginActivity::class.java)
+                startActivityForResult(i, REQUEST_CODE_NEW_ENTRY)
+                finish()
             }
 
             else -> {
@@ -170,7 +176,6 @@ class NavigationDrawerActivity : AppCompatActivity(),
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)
-        sharedPreference.clearSharedPreference()
         super.onBackPressed()
     }
 

@@ -54,56 +54,56 @@ class SignUpActivity : AppCompatActivity() {
         val textInputLayoutConfirmPasswordRegister: TextInputLayout =
             findViewById(R.id.textInputLayout_confirmPasswordRegister)
 
-        val imageBlackWoman: ImageView = findViewById(R.id.ImageBlackWoman)
-        val imageGrayWoman : ImageView = findViewById(R.id.GrayWoman)
-        val imageGreenWoman: ImageView = findViewById(R.id.ImageGreenWoman)
-        val imageBlackMan  : ImageView= findViewById(R.id.ImageBlackMan)
-        val imageGrayMan : ImageView = findViewById(R.id.ManGray)
-        val imageWeroMan : ImageView = findViewById(R.id.ImageWeroMan)
+        val imgUserBoy1: ImageView = findViewById(R.id.ImageBoy1)
+        val imgUserWoman : ImageView = findViewById(R.id.ImageWoman)
+        val imgUserWoman1: ImageView = findViewById(R.id.ImageWoman1)
+        val imgUserBoy2  : ImageView= findViewById(R.id.ImageBoy2)
+        val imgUserBoy3 : ImageView = findViewById(R.id.ImageBoy3)
+        val imgUserWoman2 : ImageView = findViewById(R.id.ImageWoman2)
 
-        currentImageView = imageBlackWoman
+        currentImageView = imgUserBoy1
         currentImageView.foreground.alpha = 0
         selectedIcon = R.drawable.ic_usr_boy1
 
-        imageBlackWoman.setOnClickListener {
+        imgUserBoy1.setOnClickListener {
             image = 1
             changeSelectedIcon(
-                imageBlackWoman,
+                imgUserBoy1,
                 R.drawable.ic_usr_boy1
             )
         }
-        imageGrayWoman.setOnClickListener {
+        imgUserWoman.setOnClickListener {
             image = 2
             changeSelectedIcon(
-                imageGrayWoman,
+                imgUserWoman,
                 R.drawable.ic_usr_woman
             )
         }
-        imageGreenWoman.setOnClickListener {
+        imgUserWoman1.setOnClickListener {
             image = 3
             changeSelectedIcon(
-                imageGreenWoman,
+                imgUserWoman1,
                 R.drawable.ic_usr_woman1
             )
         }
-        imageBlackMan.setOnClickListener {
+        imgUserBoy2.setOnClickListener {
             image = 4
             changeSelectedIcon(
-                imageBlackMan,
+                imgUserBoy2,
                 R.drawable.ic_usr_boy2
             )
         }
-        imageGrayMan.setOnClickListener {
+        imgUserBoy3.setOnClickListener {
             image = 5
             changeSelectedIcon(
-                imageGrayMan,
+                imgUserBoy3,
                 R.drawable.ic_usr_boy3
             )
         }
-        imageWeroMan.setOnClickListener {
+        imgUserWoman2.setOnClickListener {
             image = 6
             changeSelectedIcon(
-                imageWeroMan,
+                imgUserWoman2,
                 R.drawable.ic_usr_woman2
             )
         }

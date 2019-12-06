@@ -2,36 +2,36 @@ package com.modelo.todolistapp.View
 
 import android.app.Activity
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.SubMenu
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.children
 import androidx.core.view.get
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.internal.NavigationMenu
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.modelo.todolistapp.Class.LocalList
 import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.Class.User
 import com.modelo.todolistapp.Fragments.AllTasksFragment
+import com.modelo.todolistapp.Fragments.ImportantTasksFragment
 import com.modelo.todolistapp.R
 import com.modelo.todolistapp.UI.NewListFragment
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 import kotlinx.android.synthetic.main.app_bar_nd.*
-import java.lang.Exception
 
 class NavigationDrawerActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var allfragment: AllTasksFragment
+    lateinit var allfragment: Fragment
     lateinit var newlistfragment: NewListFragment
 
     private lateinit var tvUserName: TextView
@@ -48,7 +48,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
         sharedPreference = SharedPreference(this)
-        var currentUser : User = SharedPreference(this).getValueUser("usuario")
+        var currentUser: User = SharedPreference(this).getValueUser("usuario")
 
 
         setSupportActionBar(toolBar)
@@ -88,6 +88,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
         tvUserMail.text = currentUser.email
         iv_UserIcon.setImageResource(currentUser.icon)
         //addMenuItemInNavMenuDrawer()
+
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
@@ -143,6 +144,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
             }
              */
             R.id.nuevaLista -> {
+
                 val i = Intent(this, CreateListActivity::class.java)
                 startActivityForResult(i, REQUEST_CODE_NEW_ENTRY)
             }
@@ -154,7 +156,7 @@ class NavigationDrawerActivity : AppCompatActivity(),
             }
 
             else -> {
-                allfragment = AllTasksFragment()
+                allfragment = ImportantTasksFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, allfragment)
@@ -164,10 +166,11 @@ class NavigationDrawerActivity : AppCompatActivity(),
 
         }
         drawerLayout.closeDrawer(GravityCompat.START)
-
         return true
 
+
     }
+
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)

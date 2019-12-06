@@ -83,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
                                                 NavigationDrawerActivity::class.java
                                             )
                                         )
+                                        finish()
                                     } else {
                                         Toast.makeText(
                                             this@LoginActivity,

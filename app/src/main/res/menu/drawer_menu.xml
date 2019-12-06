@@ -3,58 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group
-        android:id="@+id/group_impList"
-        android:checkableBehavior="single">
-
+    <group android:checkableBehavior="single">
         <item
+            android:orderInCategory="0"
             android:id="@+id/todas"
-            android:title="Todas" />
+            android:title="Todas"
+            android:icon="@drawable/ic_action_all"
+            />
 
         <item
+            android:orderInCategory="0"
             android:id="@+id/importantes"
-            android:title="Importantes"/>
+            android:title="Importantes"
+            android:icon="@drawable/ic_action_important"
+            />
 
         <item
+            android:orderInCategory="0"
             android:id="@+id/planeadas"
-            android:title="Planeadas"/>
-
+            android:title="Planeadas"
+            android:icon="@drawable/ic_action_planeadas"
+            />
     </group>
 
 
         <item android:title="Listas de tareas"
             android:id="@+id/itemlistas"
             android:orderInCategory="1">
-            <menu>
-                <group
-                    android:id="@+id/groupLists"
-                    android:checkableBehavior="single"
-                    android:menuCategory="container"
-                    android:orderInCategory="1">
-                    <item
-                        android:id="@+id/pendientes"
-                        android:orderInCategory="2"
-                        android:title="Pendientes" />
-                    <item
-                        android:id="@+id/nuevaLista"
-                        android:orderInCategory="4"
-                        android:title="+ Nueva lista" />
+            <menu android:id="@+id/menu1">
+                <group android:checkableBehavior="single"
+                    android:id="@+id/groupLists">
+                <item
+                    android:orderInCategory="1"
+                    android:id="@+id/pendientes"
+                    android:title="Pendientes"
+                    android:icon="@drawable/ic_action_planeadas"/>
+                <item
+                    android:orderInCategory="1"
+                    android:id="@+id/nuevaLista"
+                    android:title="+ Nueva lista"/>
                 </group>
             </menu>
         </item>
 
 
 
-    <item android:title="Listas de tareas compartidas">
+    <item android:title="Listas de tareas compartidas"
+        android:orderInCategory="2">
         <menu>
             <group android:checkableBehavior="single"
                 android:id="@+id/groupSharedList">
             <item
                 android:id="@+id/nuevaListaCompartida"
-                android:title="+ Nueva lista compartida"/>
+                android:orderInCategory="2"
+                android:title="+ Nueva lista compartida" />
             </group>
         </menu>
 
     </item>
+
+    <item android:title="Cerrar sesión"
+        android:orderInCategory="10"
+        android:id="@+id/close_session"/>
+
+
 
 </menu>

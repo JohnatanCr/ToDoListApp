@@ -6,18 +6,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.SubMenu
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.internal.NavigationMenu
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.modelo.todolistapp.Class.DataBaseFireBase
 import com.modelo.todolistapp.Class.LocalList
 import com.modelo.todolistapp.Class.SharedPreference
 import com.modelo.todolistapp.Class.User
@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.app_bar_nd.*
 class NavigationDrawerActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
 
+    private val database = DataBaseFireBase()
     lateinit var allfragment: Fragment
     lateinit var newlistfragment: NewListFragment
 
@@ -85,13 +86,13 @@ class NavigationDrawerActivity : AppCompatActivity(),
         iv_UserIcon = headerLayout.findViewById(R.id.iv_userImage)
 
         tvUserName.text = currentUser.name
-        tvUserMail.text = currentUser.email
+        tvUserMail.text = decodeUserEmail(currentUser.email)
         iv_UserIcon.setImageResource(currentUser.icon)
         //addMenuItemInNavMenuDrawer()
-
+        addListsOfUser(currentUser)
     }
 
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean{
         when (menuItem.itemId) {
             /*
             R.id.todas -> {
@@ -150,9 +151,9 @@ class NavigationDrawerActivity : AppCompatActivity(),
             }
 
             R.id.nuevaListaCompartida -> {
-            val intent = Intent(this, CreateSharedList::class.java)
-            startActivity(intent)
-        }
+                val intent = Intent(this, CreateSharedList::class.java)
+                startActivity(intent)
+            }
             R.id.close_session -> {
                 sharedPreference.clearSharedPreference()
                 val i = Intent(this, LoginActivity::class.java)
@@ -179,7 +180,10 @@ class NavigationDrawerActivity : AppCompatActivity(),
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)
-        super.onBackPressed()
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -198,10 +202,42 @@ class NavigationDrawerActivity : AppCompatActivity(),
         try {
             var navView: NavigationView = nav_view
             var menu = navView.menu
-            menu.add(R.id.groupLists, Menu.NONE, 1, localList!!.title)//.setIcon(localList!!.listIcon)
+            menu.add(
+                R.id.groupLists,
+                Menu.NONE,
+                1,
+                localList!!.title
+            )//.setIcon(localList!!.listIcon)
         } catch (e: Exception) {
             Log.println(taskId, "error", e.localizedMessage)
         }
+    }
+
+    fun addListsOfUser(user: User) {
+        val listReference = database.getListReference(user)
+        listReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                //
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.value != null) {
+
+                    for (value in p0.children) {
+                        addMenuItem(value.getValue(LocalList::class.java))
+/*                        Toast.makeText(
+                            this@NavigationDrawerActivity,
+                            value.key.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()*/
+                    }
+                }
+            }
+        })
+    }
+
+    private fun decodeUserEmail(userEmail: String): String {
+        return userEmail.replace(",", ".")
     }
 
 }

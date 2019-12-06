@@ -164,8 +164,6 @@ class LoginActivity : AppCompatActivity() {
         return userEmail.replace(".", ",")
     }
 
-    private fun decodeUserEmail(userEmail: String): String {
-        return userEmail.replace(",", ".")
-    }
+
 
 }

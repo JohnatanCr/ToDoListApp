@@ -18,7 +18,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.NavigationDrawerActivity"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar" android:screenOrientation="portrait"></activity>
         <activity android:name=".View.MainActivity" />
         <activity
             android:name=".View.LoginActivity"

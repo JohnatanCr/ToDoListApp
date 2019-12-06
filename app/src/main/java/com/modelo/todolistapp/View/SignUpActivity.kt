@@ -27,7 +27,7 @@ class SignUpActivity : AppCompatActivity() {
     private val database = DataBaseFireBase()
     private lateinit var currentImageView: ImageView
     var selectedIcon = 0
-    var image = 1;
+    var image = 1
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -135,6 +135,7 @@ class SignUpActivity : AppCompatActivity() {
                                 "EXITO",
                                 Toast.LENGTH_LONG
                             ).show()
+                            onBackPressed()
                         } else {
                             Toast.makeText(
                                 this@SignUpActivity,

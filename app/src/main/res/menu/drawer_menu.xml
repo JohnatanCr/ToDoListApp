@@ -8,18 +8,21 @@
             android:orderInCategory="0"
             android:id="@+id/todas"
             android:title="Todas"
+            android:icon="@drawable/ic_action_all"
             />
 
         <item
             android:orderInCategory="0"
             android:id="@+id/importantes"
             android:title="Importantes"
+            android:icon="@drawable/ic_action_important"
             />
 
         <item
             android:orderInCategory="0"
             android:id="@+id/planeadas"
             android:title="Planeadas"
+            android:icon="@drawable/ic_action_planeadas"
             />
     </group>
 
@@ -33,7 +36,8 @@
                 <item
                     android:orderInCategory="1"
                     android:id="@+id/pendientes"
-                    android:title="Pendientes"/>
+                    android:title="Pendientes"
+                    android:icon="@drawable/ic_action_planeadas"/>
                 <item
                     android:orderInCategory="1"
                     android:id="@+id/nuevaLista"
@@ -52,7 +56,7 @@
             <item
                 android:id="@+id/nuevaListaCompartida"
                 android:orderInCategory="2"
-                android:title="+ Nueva lista compartida"/>
+                android:title="+ Nueva lista compartida" />
             </group>
         </menu>
 

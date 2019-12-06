@@ -150,7 +150,6 @@ class NavigationDrawerActivity : AppCompatActivity(),
             R.id.nuevaListaCompartida -> {
                 val intent = Intent(this, CreateSharedList::class.java)
                 startActivity(intent)
-                finish()
             }
 
             else -> {
